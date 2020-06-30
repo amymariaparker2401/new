@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>New release of python module · fastText</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Today, we are happy to release a new version of the fastText python library. The main goal of this release is to merge two existing python modules: the official `fastText` module which was available on our github repository and the unofficial `fasttext` module which was available on pypi.org. We hope that this new version will address the confusion due to the previous existence of two similar, but different, python modules."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="New release of python module · fastText"/><meta property="og:type" content="website"/><meta property="og:url" content="https://fasttext.cc/blog/2019/06/25/blog-post.html"/><meta property="og:description" content="Today, we are happy to release a new version of the fastText python library. The main goal of this release is to merge two existing python modules: the official `fastText` module which was available on our github repository and the unofficial `fasttext` module which was available on pypi.org. We hope that this new version will address the confusion due to the previous existence of two similar, but different, python modules."/><meta property="og:image" content="https://fasttext.cc/img/ogimage.png"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/fasttext-icon-bg-web.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://fasttext.cc/blog/atom.xml" title="fastText Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://fasttext.cc/blog/feed.xml" title="fastText Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-44373548-30', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/tabber.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/fasttext-icon-white-web.png" alt="fastText"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/support.html" target="_self">Docs</a></li><li class=""><a href="/docs/en/english-vectors.html" target="_self">Resources</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="https://github.com/facebookresearch/fastText/" target="_blank">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2019/06/25/blog-post.html">New release of python module</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/10/02/blog-post.html">Language identification</a></li><li class="navListItem"><a class="navItem" href="/blog/2017/05/02/blog-post.html">fastText on mobile</a></li><li class="navListItem"><a class="navItem" href="/blog/2016/08/18/blog-post.html">Releasing fastText</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/06/25/blog-post.html">New release of python module</a></h1><p class="post-meta">June 25, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://research.fb.com/people/celebi-onur/" target="_blank" rel="noreferrer noopener">Onur Çelebi</a></p><div class="authorPhoto"><a href="https://research.fb.com/people/celebi-onur/" target="_blank" rel="noreferrer noopener"><img src="https://graph.facebook.com/663146146/picture/?height=200&amp;width=200" alt="Onur Çelebi"/></a></div></div></header><div><span><p>Today, we are happy to release a new version of the fastText python library. The main goal of this release is to merge two existing python modules: the official <code>fastText</code> module which was available on our github repository and the unofficial <code>fasttext</code> module which was available on pypi.org. We hope that this new version will address the confusion due to the previous existence of two similar, but different, python modules.</p>
+<p>The new version of our library is now available on <a href="https://pypi.org/project/fasttext/">pypi.org</a> as well as on our github repository, and you can find <a href="/docs/en/python-module.html">an overview of its API here</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="fasttext-vs-fasttext-what-happened"></a><a href="#fasttext-vs-fasttext-what-happened" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>fastText vs fasttext: what happened?</h2>
+<p>There was an ongoing confusion among our user community about the existence of both <code>fastText</code> and <code>fasttext</code> modules.</p>
+<p>When fastText was first released in 2016, it was a command line only utility. Very soon, people wanted to use fastText's capabilities from python without having to call a binary for each action. In August 2016, <a href="https://github.com/pyk">Bayu Aldi Yansyah</a>, a developer outside of Facebook, published a python wrapper of fastText. His work was very helpful to a lot of people in our community and he published his unofficial python library on pypi with the pretty straighforward module name <code>fasttext</code> (note the lowercase <code>t</code>).</p>
+<p>Later, our team began to work on an official python binding of fastText, that was published under the same github repository as the C++ source code. However, the module name for this official library was <code>fastText</code> (note the uppercase <code>T</code>).</p>
+<p>Last year, Bayu Aldi Yansyah gave us admin access to the pypi project so that we could merge the two libraries.</p>
+<p>To sum up, we ended up with two libraries that had:</p>
+<ul>
+<li>almost the same name</li>
+<li>different APIs</li>
+<li>different versions</li>
+<li>different ways to install</li>
+</ul>
+<p>That was a very confusing situation for the community.</p>
+<h2><a class="anchor" aria-hidden="true" id="what-actions-did-we-take"></a><a href="#what-actions-did-we-take" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What actions did we take?</h2>
+<p>Today we are merging the two python libraries. We decided to keep the official API and top level functions such as <code>train_unsupervised</code> and <code>train_supervised</code> as well as returning numpy objects. We remove <code>cbow</code>, <code>skipgram</code> and <code>supervised</code> functions from the unofficial API. However, <a href="#wordvectormodel-and-supervisedmodel-objects">we bring nice ideas</a> from the unofficial API to the official one. In particular, we liked the pythonic approach of <code>WordVectorModel</code>. This new python module is named <code>fasttext</code>, and is available on both <a href="https://pypi.org/project/fasttext/">pypi</a> and our <a href="https://github.com/facebookresearch/fastText">github</a> repository.</p>
+<p>From now, we will refer to the tool as &quot;fastText&quot;, however the name of the python module is <code>fasttext</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="what-is-the-right-way-to-do-now"></a><a href="#what-is-the-right-way-to-do-now" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is the right way to do now?</h2>
+<p>Before, you would either use <code>fastText</code> (uppercase <code>T</code>):</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">import</span> fastText
+<span class="hljs-comment"># and call:</span>
+fastText.train_supervised
+fastText.train_unsupervised
+</code></pre>
+<p>or use <code>fasttext</code> (lowercase <code>t</code>):</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">import</span> fasttext
+<span class="hljs-comment"># and call:</span>
+fasttext.cbow
+fasttext.skipgram
+fasttext.supervised
+</code></pre>
+<p>Now, the right way to do is to
+<code>import fasttext</code> (lowercase <code>t</code>)
+and use</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">import</span> fasttext
+<span class="hljs-comment"># and call:</span>
+fasttext.train_supervised
+fasttext.train_unsupervised
+</code></pre>
+<p>We are keeping the lowercase <code>fasttext</code> module name, while we keep the <code>fastText</code> API.</p>
+<p>This is because:</p>
+<ul>
+<li>the standard way to name python modules is all lowercases</li>
+<li>the API from <code>fastText</code> is exposing numpy arrays, which is widely used by the machine learning community.</li>
+</ul>
+<p>You can find a more comprehensive overview of our python API <a href="/docs/en/python-module.html">here</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="should-i-modify-my-existing-code"></a><a href="#should-i-modify-my-existing-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Should I modify my existing code?</h2>
+<p>Depending on the version of the python module you were using, you might need to do some little modifications on your existing code.</p>
+<h3><a class="anchor" aria-hidden="true" id="1-you-were-using-the-official-fasttext-module"></a><a href="#1-you-were-using-the-official-fasttext-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1) You were using the official <code>fastText</code> module:</h3>
+<p>You don't have to do much. Just replace your <code>import fastText</code> lines by <code>import fasttext</code> and everything should work as usual.</p>
+<h3><a class="anchor" aria-hidden="true" id="2-you-were-using-the-unofficial-fasttext-module"></a><a href="#2-you-were-using-the-unofficial-fasttext-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2) You were using the unofficial <code>fasttext</code> module:</h3>
+<p>If you were using the functions <code>cbow</code>, <code>skipgram</code>, <code>supervised</code> and/or <code>WordVectorModel</code>, <code>SupervisedModel</code> objects, you were using the unofficial <code>fasttext</code> module.</p>
+<p>Updating your code should be pretty straightforward, but it still implies some little changes.</p>
+<h4><a class="anchor" aria-hidden="true" id="cbow-function-use-train_unsupervised-instead"></a><a href="#cbow-function-use-train_unsupervised-instead" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>cbow</code> function: use <code>train_unsupervised</code> instead.</h4>
+<p>For example, replace:</p>
+<pre><code class="hljs">fasttext.cbow(<span class="hljs-string">"train.txt"</span>, <span class="hljs-string">"model_file"</span>, <span class="hljs-attribute">lr</span>=0.05, <span class="hljs-attribute">dim</span>=100, <span class="hljs-attribute">ws</span>=5, <span class="hljs-attribute">epoch</span>=5)
+</code></pre>
+<p>with</p>
+<pre><code class="hljs">model = fasttext.train_unsupervised(<span class="hljs-string">"train.txt"</span>, <span class="hljs-attribute">model</span>=<span class="hljs-string">'cbow'</span>, <span class="hljs-attribute">lr</span>=0.05, <span class="hljs-attribute">dim</span>=100, <span class="hljs-attribute">ws</span>=5, <span class="hljs-attribute">epoch</span>=5)
+model.save_model(<span class="hljs-string">"model_file.bin"</span>)
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="skipgram-function-use-train_unsupervised-instead"></a><a href="#skipgram-function-use-train_unsupervised-instead" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>skipgram</code> function: use <code>train_unsupervised</code> instead.</h4>
+<p>For example, replace:</p>
+<pre><code class="hljs">fasttext.skipgram(<span class="hljs-string">"train.txt"</span>, <span class="hljs-string">"model_file"</span>, <span class="hljs-attribute">lr</span>=0.05, <span class="hljs-attribute">dim</span>=100, <span class="hljs-attribute">ws</span>=5, <span class="hljs-attribute">epoch</span>=5)
+</code></pre>
+<p>with</p>
+<pre><code class="hljs">model = fasttext.train_unsupervised(<span class="hljs-string">"train.txt"</span>, <span class="hljs-attribute">model</span>=<span class="hljs-string">'skipgram'</span>, <span class="hljs-attribute">lr</span>=0.05, <span class="hljs-attribute">dim</span>=100, <span class="hljs-attribute">ws</span>=5, <span class="hljs-attribute">epoch</span>=5)
+model.save_model(<span class="hljs-string">"model_file.bin"</span>)
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="supervised-function-use-train_supervised-instead"></a><a href="#supervised-function-use-train_supervised-instead" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>supervised</code> function: use <code>train_supervised</code> instead</h4>
+<p>For example, replace:</p>
+<pre><code class="hljs">fasttext.supervised(<span class="hljs-string">"train.txt"</span>, <span class="hljs-string">"model_file"</span>, <span class="hljs-attribute">lr</span>=0.1, <span class="hljs-attribute">dim</span>=100, <span class="hljs-attribute">epoch</span>=5, <span class="hljs-attribute">word_ngrams</span>=2, <span class="hljs-attribute">loss</span>=<span class="hljs-string">'softmax'</span>)
+</code></pre>
+<p>with</p>
+<pre><code class="hljs">model = fasttext.train_supervised(<span class="hljs-string">"train.txt"</span>, <span class="hljs-attribute">lr</span>=0.1, <span class="hljs-attribute">dim</span>=100, <span class="hljs-attribute">epoch</span>=5, , <span class="hljs-attribute">word_ngrams</span>=2, <span class="hljs-attribute">loss</span>=<span class="hljs-string">'softmax'</span>)
+model.save_model(<span class="hljs-string">"model_file.bin"</span>)
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="parameters"></a><a href="#parameters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parameters</h4>
+<ul>
+<li>As you can see, you can use either <code>word_ngrams</code> or <code>wordNgrams</code> as parameter name. Because the parameter names from the unofficial API are mapped to the official ones: <code>min_count</code> to <code>minCount</code>, <code>word_ngrams</code> to <code>wordNgrams</code>, <code>lr_update_rate</code> to <code>lrUpdateRate</code>, <code>label_prefix</code> to <code>label</code> and <code>pretrained_vectors</code> to <code>pretrainedVectors</code>.</li>
+<li><code>silent</code> parameter is not supported. Use <code>verbose</code> parameter instead.</li>
+<li><code>encoding</code> parameter is not supported, every input should be encoded in <code>utf-8</code>.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="wordvectormodel-and-supervisedmodel-objects"></a><a href="#wordvectormodel-and-supervisedmodel-objects" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>WordVectorModel</code> and <code>SupervisedModel</code> objects</h3>
+<p>Instead of <code>WordVectorModel</code> and <code>SupervisedModel</code> objects, we return a model object that mimics some nice ideas from the unofficial API.</p>
+<pre><code class="hljs css language-python">model = fasttext.train_unsupervised(<span class="hljs-string">"train.txt"</span>, model=<span class="hljs-string">'skipgram'</span>)
+print(model.words)      <span class="hljs-comment"># list of words in dictionary</span>
+print(model[<span class="hljs-string">'king'</span>])    <span class="hljs-comment"># get the vector of the word 'king'</span>
+print(<span class="hljs-string">'king'</span> <span class="hljs-keyword">in</span> model)  <span class="hljs-comment"># check if a word is in dictionary</span>
+</code></pre>
+<pre><code class="hljs css language-python">model = fasttext.train_supervised(<span class="hljs-string">"train.txt"</span>)
+print(model.words)      <span class="hljs-comment"># list of words in dictionary</span>
+print(model.labels)     <span class="hljs-comment"># list of labels</span>
+</code></pre>
+<p>The model object also contains the arguments of the training:</p>
+<pre><code class="hljs css language-python">print(model.epoch)
+print(model.loss)
+print(model.wordNgrams)
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="thank-you"></a><a href="#thank-you" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Thank you!</h2>
+<p>We want to thank our incredible community. We truly appreciate your feedback, a big thank you to everyone reporting issues and contributing to the project. In particular we want to express how grateful we are to <a href="https://github.com/pyk">Bayu Aldi Yansyah</a> who did a great job with his python library and for giving us the ownership of the pypi <code>fasttext</code> project.</p>
+</span></div></div><div class="blogSocialSection"></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/fasttext-icon-white-web.png" alt="fastText"/></a><div><h5>Support</h5><a href="/docs/en/support.html">Getting Started</a><a href="/docs/en/supervised-tutorial.html">Tutorials</a><a href="/docs/en/faqs.html">FAQs</a><a href="/docs/en/api.html">API</a></div><div><h5>Community</h5><a href="https://www.facebook.com/groups/1174547215919768/" target="_blank">Facebook Group</a><a href="http://stackoverflow.com/questions/tagged/fasttext" target="_blank">Stack Overflow</a><a href="https://groups.google.com/forum/#!forum/fasttext-library" target="_blank">Google Group</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/facebookresearch/fastText" target="_blank">GitHub</a><a class="github-button" href="https://github.com/facebookresearch/fastText/" data-icon="octicon-star" data-count-href="/fastText/stargazers" data-count-api="/repos/fastText#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Facebook Inc.</section></footer></div></body></html>
